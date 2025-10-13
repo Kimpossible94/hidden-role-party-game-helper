@@ -47,8 +47,19 @@ class _HostScreenState extends State<HostScreen> {
 
   void _setupGameUpdateStream() {
     _gameUpdateSubscription = _gameService.gameUpdateStream.listen((updatedGame) {
+      // 게임이 삭제됨
+      if (updatedGame == null) {
+        if (mounted) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false,
+          );
+        }
+        return;
+      }
+
       // 현재 게임 ID와 일치하는 업데이트만 처리
-      if (updatedGame?.id == widget.gameId) {
+      if (updatedGame.id == widget.gameId) {
         setState(() {
           _game = updatedGame;
         });

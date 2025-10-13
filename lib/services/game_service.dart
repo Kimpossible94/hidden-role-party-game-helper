@@ -115,8 +115,9 @@ class GameService {
     final game = currentGame!;
     final players = List<Player>.from(game.players);
     final playerCount = players.length;
+    final useExtended = game.settings.useExtendedCharacters;
 
-    if (playerCount < 6) {
+    if (playerCount < 6 && !useExtended) {
       _assignBasicRoles(players);
     } else {
       _assignExtendedRoles(players);
@@ -128,60 +129,185 @@ class GameService {
   void _assignBasicRoles(List<Player> players) {
     players.shuffle();
 
-    final redTeamSize = (players.length / 2).ceil();
+    final isOddPlayerCount = players.length % 2 == 1;
+    final redTeamSize = (players.length / 2).floor(); // 홀수일 때 파란팀이 한 명 적음
+    final blueTeamSize = players.length - redTeamSize - (isOddPlayerCount ? 1 : 0);
+
+    int playerIndex = 0;
 
     // 빨간팀 할당
     for (int i = 0; i < redTeamSize; i++) {
       if (i == 0) {
-        players[i] = players[i].copyWith(team: Team.red, role: Role.bomber);
+        players[playerIndex] = players[playerIndex].copyWith(team: Team.red, role: Role.bomber);
       } else {
-        players[i] = players[i].copyWith(team: Team.red, role: Role.redTeamMember);
+        players[playerIndex] = players[playerIndex].copyWith(team: Team.red, role: Role.redTeamMember);
       }
+      playerIndex++;
     }
 
     // 파란팀 할당
-    for (int i = redTeamSize; i < players.length; i++) {
-      if (i == redTeamSize) {
-        players[i] = players[i].copyWith(team: Team.blue, role: Role.president);
+    for (int i = 0; i < blueTeamSize; i++) {
+      if (i == 0) {
+        players[playerIndex] = players[playerIndex].copyWith(team: Team.blue, role: Role.president);
       } else {
-        players[i] = players[i].copyWith(team: Team.blue, role: Role.blueTeamMember);
+        players[playerIndex] = players[playerIndex].copyWith(team: Team.blue, role: Role.blueTeamMember);
       }
+      playerIndex++;
+    }
+
+    // 홀수일 때 중립 역할 할당
+    if (isOddPlayerCount) {
+      final neutralRoles = [Role.gambler, Role.mi6, Role.clone, Role.agoraphobe];
+      neutralRoles.shuffle();
+      players[playerIndex] = players[playerIndex].copyWith(
+        team: Team.neutral,
+        role: neutralRoles.first,
+      );
     }
   }
 
   void _assignExtendedRoles(List<Player> players) {
     players.shuffle();
 
-    final availableRoles = [
-      Role.bomber,
-      Role.president,
-      Role.doctor,
-      Role.engineer,
-      Role.hotPotato,
-      Role.troubleshooter,
-      Role.tinkerer,
-      Role.mastermind,
-    ];
+    final playerCount = players.length;
+    final isOddPlayerCount = playerCount % 2 == 1;
+    final useExtended = currentGame?.settings.useExtendedCharacters ?? false;
 
-    int roleIndex = 0;
-    for (int i = 0; i < players.length; i++) {
-      Role assignedRole;
-
-      if (roleIndex < availableRoles.length) {
-        assignedRole = availableRoles[roleIndex];
-        roleIndex++;
+    // 중립 역할을 먼저 선택 (홀수일 때)
+    Role? neutralRole;
+    if (isOddPlayerCount) {
+      List<Role> neutralRoles;
+      if (useExtended) {
+        neutralRoles = [
+          Role.gambler,
+          Role.mi6,
+          Role.clone,
+          Role.robot,
+          Role.agoraphobe,
+          Role.traveler,
+          Role.anarchist,
+          Role.sniper,
+          Role.target,
+          Role.privateEye,
+          Role.drunk,
+          Role.nuclearTyrant,
+        ];
       } else {
-        final redTeamCount = players.take(i).where((p) => p.team == Team.red).length;
-        final blueTeamCount = players.take(i).where((p) => p.team == Team.blue).length;
-
-        assignedRole = (redTeamCount <= blueTeamCount)
-            ? Role.redTeamMember
-            : Role.blueTeamMember;
+        neutralRoles = [
+          Role.gambler,
+          Role.mi6,
+          Role.clone,
+          Role.agoraphobe,
+        ];
       }
+      neutralRoles.shuffle();
+      neutralRole = neutralRoles.first;
+    }
 
-      players[i] = players[i].copyWith(
-        team: assignedRole.defaultTeam,
-        role: assignedRole,
+    // 팀별 역할 리스트
+    List<Role> redRoles = [Role.bomber]; // 폭탄범은 필수
+    List<Role> blueRoles = [Role.president]; // 대통령은 필수
+
+    if (useExtended) {
+      // 확장 빨간팀 캐릭터들
+      redRoles.addAll([
+        Role.martyr,
+        Role.tinkerer,
+        Role.mastermind,
+        Role.drBoom,
+        Role.tuesdayKnight,
+        Role.doctor, // 확장 모드에서도 doctor 포함
+      ]);
+
+      // 확장 파란팀 캐릭터들
+      blueRoles.addAll([
+        Role.troubleshooter,
+        Role.nurse,
+        Role.presidentsDaughter,
+        Role.bombBot,
+        Role.queen,
+        Role.engineer, // 확장 모드에서도 engineer 포함
+      ]);
+
+      // 특수 양팀 가능 캐릭터들 (랜덤 배정)
+      final specialRoles = [
+        Role.hotPotato,
+        Role.spy,
+        Role.zombie,
+        Role.psychologist,
+        Role.criminal,
+        Role.medic,
+        Role.mummy,
+        Role.agent,
+        Role.enforcer,
+        Role.usurper,
+        Role.shyGuy,
+      ];
+      specialRoles.shuffle();
+
+      // 특수 역할을 팀에 균등 분배
+      for (int i = 0; i < specialRoles.length; i++) {
+        if (i % 2 == 0) {
+          redRoles.add(specialRoles[i]);
+        } else {
+          blueRoles.add(specialRoles[i]);
+        }
+      }
+    } else {
+      // 기본 캐릭터만 사용
+      redRoles.addAll([
+        Role.doctor,
+        Role.tinkerer,
+        Role.mastermind,
+        Role.hotPotato,
+      ]);
+
+      blueRoles.addAll([
+        Role.engineer,
+        Role.troubleshooter,
+      ]);
+    }
+
+    // 폭탄범과 대통령을 제외하고 나머지 역할 섞기
+    final redRolesWithoutBomber = redRoles.skip(1).toList()..shuffle();
+    final blueRolesWithoutPresident = blueRoles.skip(1).toList()..shuffle();
+
+    // 다시 합치기 (폭탄범과 대통령을 맨 앞에)
+    redRoles = [Role.bomber, ...redRolesWithoutBomber];
+    blueRoles = [Role.president, ...blueRolesWithoutPresident];
+
+    // 팀 인원 계산 (홀수면 중립 1명 빼기)
+    final teamPlayerCount = isOddPlayerCount ? playerCount - 1 : playerCount;
+    final redTeamSize = teamPlayerCount ~/ 2;
+    final blueTeamSize = teamPlayerCount - redTeamSize;
+
+    int playerIndex = 0;
+
+    // 빨간팀 할당 (폭탄범 필수)
+    for (int i = 0; i < redTeamSize; i++) {
+      final role = i < redRoles.length ? redRoles[i] : Role.redTeamMember;
+      players[playerIndex] = players[playerIndex].copyWith(
+        team: Team.red,
+        role: role,
+      );
+      playerIndex++;
+    }
+
+    // 파란팀 할당 (대통령 필수)
+    for (int i = 0; i < blueTeamSize; i++) {
+      final role = i < blueRoles.length ? blueRoles[i] : Role.blueTeamMember;
+      players[playerIndex] = players[playerIndex].copyWith(
+        team: Team.blue,
+        role: role,
+      );
+      playerIndex++;
+    }
+
+    // 홀수일 때 중립 역할 할당
+    if (isOddPlayerCount && neutralRole != null) {
+      players[playerIndex] = players[playerIndex].copyWith(
+        team: Team.neutral,
+        role: neutralRole,
       );
     }
   }
@@ -216,7 +342,79 @@ class GameService {
     await _updateGameInFirestore();
   }
 
+  Future<void> setGamblerPrediction(Team prediction) async {
+    if (currentGame == null || _currentPlayerId == null) return;
 
+    final playerIndex = currentGame!.players.indexWhere((p) => p.id == _currentPlayerId);
+    if (playerIndex != -1 && currentGame!.players[playerIndex].role == Role.gambler) {
+      currentGame!.players[playerIndex] = currentGame!.players[playerIndex].copyWith(
+        gamblerPrediction: prediction,
+      );
+      await _updateGameInFirestore();
+    }
+  }
+
+  // 좀비 감염 실행 (좀비가 확인 후 바로 감염)
+  Future<void> infectPlayer(String targetPlayerId, String zombieName) async {
+    if (currentGame == null || _currentPlayerId == null) return;
+
+    final zombieIndex = currentGame!.players.indexWhere((p) => p.id == _currentPlayerId);
+    if (zombieIndex == -1) return;
+
+    final zombie = currentGame!.players[zombieIndex];
+    // 좀비 역할이거나 이미 감염된 사람만 감염 가능
+    if (zombie.role != Role.zombie && !zombie.isZombie) return;
+
+    final targetIndex = currentGame!.players.indexWhere((p) => p.id == targetPlayerId);
+    if (targetIndex == -1) return;
+
+    final target = currentGame!.players[targetIndex];
+    // 이미 좀비인 사람은 감염할 수 없음
+    if (target.isZombie || target.role == Role.zombie) return;
+
+    // 원래 팀 저장 후 좀비로 전환
+    currentGame!.players[targetIndex] = target.copyWith(
+      isZombie: true,
+      originalTeam: target.team, // 원래 팀 저장
+      team: Team.neutral, // 중립 팀으로 변경
+      role: Role.zombie, // 역할도 좀비로 변경
+    );
+
+    await _updateGameInFirestore();
+
+    // 타겟 플레이어에게 알림 전송 (Firestore에 임시 저장)
+    await _firestore.collection('games').doc(_currentGameId).collection('infectionNotifications').add({
+      'zombieName': zombieName,
+      'targetId': targetPlayerId,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+  }
+
+  // 감염 알림 스트림 (특정 플레이어에 대한)
+  Stream<QuerySnapshot> getInfectionNotificationsStream(String playerId) {
+    if (_currentGameId == null) {
+      return Stream.empty();
+    }
+
+    return _firestore
+        .collection('games')
+        .doc(_currentGameId)
+        .collection('infectionNotifications')
+        .where('targetId', isEqualTo: playerId)
+        .snapshots();
+  }
+
+  // 감염 알림 삭제
+  Future<void> dismissInfectionNotification(String notificationId) async {
+    if (_currentGameId == null) return;
+
+    await _firestore
+        .collection('games')
+        .doc(_currentGameId)
+        .collection('infectionNotifications')
+        .doc(notificationId)
+        .delete();
+  }
 
   Future<void> requestAbdication(String fromPlayerId, String toPlayerId) async {
     if (currentGame == null || _currentPlayerId != fromPlayerId) return;
@@ -368,6 +566,15 @@ class GameService {
             previousGame.activeVotingSessions.length != updatedGame.activeVotingSessions.length) {
           _gameUpdateController.add(updatedGame);
         }
+      } else {
+        // 게임이 삭제됨 (호스트가 나감) - 참가자들을 자동으로 내보냄
+        _games.remove(gameId);
+        _currentGameListener?.cancel();
+        _currentGameId = null;
+        _currentPlayerId = null;
+
+        // null을 전송하여 UI에 게임 종료를 알림
+        _gameUpdateController.add(null);
       }
     });
   }

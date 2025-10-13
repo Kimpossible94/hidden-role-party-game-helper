@@ -13,11 +13,13 @@ class GameSettings {
   final int totalRounds;
   final List<int> roundDurationsMinutes; // 각 라운드별 시간 (분)
   final int breakDurationMinutes;
+  final bool useExtendedCharacters; // 확장 캐릭터 사용 여부
 
   GameSettings({
     required this.totalRounds,
     required this.roundDurationsMinutes,
     this.breakDurationMinutes = 2,
+    this.useExtendedCharacters = false,
   }) : assert(roundDurationsMinutes.length == totalRounds);
 
   // 특정 라운드의 시간을 가져오기 (1-based index)
@@ -33,6 +35,7 @@ class GameSettings {
       'totalRounds': totalRounds,
       'roundDurationsMinutes': roundDurationsMinutes,
       'breakDurationMinutes': breakDurationMinutes,
+      'useExtendedCharacters': useExtendedCharacters,
     };
   }
 
@@ -41,6 +44,7 @@ class GameSettings {
       totalRounds: json['totalRounds'],
       roundDurationsMinutes: List<int>.from(json['roundDurationsMinutes']),
       breakDurationMinutes: json['breakDurationMinutes'] ?? 2,
+      useExtendedCharacters: json['useExtendedCharacters'] ?? false,
     );
   }
 
@@ -383,6 +387,16 @@ class Game {
   }
 
   void _determineWinner() {
+    // 좀비 과반수 체크 (최우선)
+    final zombieCount = players.where((p) => p.isZombie || p.role == Role.zombie).length;
+    final totalPlayers = players.length;
+
+    if (zombieCount > totalPlayers / 2) {
+      winnerId = 'zombie'; // 좀비들만 승리
+      return;
+    }
+
+    // 기본 승리 조건: 폭탄범과 대통령 위치
     final bomber = players.where((p) => p.role == Role.bomber).firstOrNull;
     final president = players.where((p) => p.role == Role.president).firstOrNull;
 

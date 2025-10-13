@@ -14,6 +14,7 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
   final _nameController = TextEditingController();
   final _roundsController = TextEditingController(text: '3');
   final _gameService = GameService();
+  bool _useExtendedCharacters = false;
   List<TextEditingController> _roundTimeControllers = [
     TextEditingController(text: '5'),
     TextEditingController(text: '4'),
@@ -71,6 +72,7 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
     final settings = GameSettings(
       totalRounds: totalRounds,
       roundDurationsMinutes: roundDurations,
+      useExtendedCharacters: _useExtendedCharacters,
     );
 
     try {
@@ -141,6 +143,53 @@ class _CreateGameScreenState extends State<CreateGameScreen> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(color: Colors.red),
                   ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey[700]!),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _useExtendedCharacters ? '확장 모드' : '기본 모드',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            _useExtendedCharacters
+                              ? '6명 이상일 때 특수 역할 포함'
+                              : '기본 역할만 사용 (폭탄범 vs 대통령)',
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 13,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Switch(
+                      value: _useExtendedCharacters,
+                      onChanged: (value) {
+                        setState(() {
+                          _useExtendedCharacters = value;
+                        });
+                      },
+                      activeColor: Colors.red,
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 24),

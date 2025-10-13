@@ -1,11 +1,11 @@
 {
-    "name": "two_room_one_bomb",
-    "short_name": "two_room_one_bomb",
+    "name": "Hidden Role Party Game Helper",
+    "short_name": "Hidden Role Game",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A Flutter companion app for hidden role party games.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

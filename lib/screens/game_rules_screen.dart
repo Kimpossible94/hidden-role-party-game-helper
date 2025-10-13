@@ -22,7 +22,7 @@ class GameRulesScreen extends StatelessWidget {
               _buildSection(
                 title: '게임 개요',
                 icon: Icons.info,
-                content: '''Two Rooms and a Boom은 숨겨진 역할을 가진 파티 게임입니다.
+                content: '''히든 역할 파티 게임은 숨겨진 역할을 가진 파티 게임입니다.
 
 플레이어들은 두 개의 방으로 나뉘어 각자의 팀 목표를 달성하기 위해 경쟁합니다.''',
               ),

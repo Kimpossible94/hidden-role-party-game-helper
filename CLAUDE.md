@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Flutter application for "Two Rooms and a Boom" - a party game companion app that helps moderate the hidden role game. The app manages game sessions, player roles, room assignments, and round timers.
+This is a Flutter application for "Hidden Role Party Game Helper" - a party game companion app that helps moderate hidden role games. The app manages game sessions, player roles, room assignments, and round timers.
 
 ## Development Commands
 
