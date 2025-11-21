@@ -60,7 +60,6 @@ class GameRulesScreen extends StatelessWidget {
               _buildRoleCard(Role.president),
               _buildRoleCard(Role.doctor),
               _buildRoleCard(Role.engineer),
-              _buildRoleCard(Role.hotPotato),
               _buildRoleCard(Role.troubleshooter),
               _buildRoleCard(Role.tinkerer),
               _buildRoleCard(Role.mastermind),
@@ -196,8 +195,6 @@ class GameRulesScreen extends StatelessWidget {
         return Icons.local_hospital;
       case Role.engineer:
         return Icons.build;
-      case Role.hotPotato:
-        return Icons.whatshot;
       case Role.troubleshooter:
         return Icons.build_circle;
       case Role.tinkerer:

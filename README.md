@@ -56,36 +56,6 @@
 
 **참고**: 실제 사용 시에는 자신만의 Firebase 프로젝트를 생성하여 설정 파일을 교체해야 합니다.
 
-### 설치
-
-```bash
-# 저장소 클론
-git clone <repository-url>
-cd two_room_one_bomb
-
-# 의존성 설치
-flutter pub get
-
-# 앱 실행
-flutter run -d macos --debug  # macOS용
-flutter run -d chrome --debug # 웹용
-```
-
-### 개발 명령어
-
-```bash
-# 정리 및 재빌드
-flutter clean
-flutter pub get
-
-# 코드 분석
-flutter analyze
-flutter test
-
-# 핫 리로드 (Flutter 터미널에서 'r' 키)
-# 핫 리스타트 (Flutter 터미널에서 'R' 키)
-```
-
 ## 아키텍처
 
 ### 핵심 컴포넌트

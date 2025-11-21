@@ -59,7 +59,9 @@ class _JoinGameScreenState extends State<JoinGameScreen> {
             );
             break;
           case JoinGameResult.gameNotFound:
-            _showDebugInfo('게임 ID를 찾을 수 없습니다.');
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('게임 ID를 찾을 수 없습니다.')),
+            );
             break;
           case JoinGameResult.gameAlreadyStarted:
             ScaffoldMessenger.of(context).showSnackBar(
@@ -71,48 +73,10 @@ class _JoinGameScreenState extends State<JoinGameScreen> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('게임 참가 실패: $e')),
+          const SnackBar(content: Text('게임 참가에 실패했습니다.')),
         );
       }
     }
-  }
-
-  void _showDebugInfo(String message) {
-    final debugInfo = _gameService.getDebugInfo();
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('게임 참가 실패'),
-        content: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(message),
-              const SizedBox(height: 16),
-              const Text(
-                '디버그 정보:',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                debugInfo,
-                style: const TextStyle(
-                  fontFamily: 'monospace',
-                  fontSize: 12,
-                ),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('확인'),
-          ),
-        ],
-      ),
-    );
   }
 
   @override

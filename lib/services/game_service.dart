@@ -231,7 +231,6 @@ class GameService {
 
       // 특수 양팀 가능 캐릭터들 (랜덤 배정)
       final specialRoles = [
-        Role.hotPotato,
         Role.spy,
         Role.zombie,
         Role.psychologist,
@@ -259,7 +258,6 @@ class GameService {
         Role.doctor,
         Role.tinkerer,
         Role.mastermind,
-        Role.hotPotato,
       ]);
 
       blueRoles.addAll([

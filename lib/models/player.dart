@@ -10,7 +10,6 @@ enum Role {
   // 기존 구현 캐릭터들
   doctor,
   engineer,
-  hotPotato,
   troubleshooter,
   tinkerer,
   mastermind,
@@ -228,8 +227,6 @@ extension RoleExtension on Role {
         return '의사';
       case Role.engineer:
         return '엔지니어';
-      case Role.hotPotato:
-        return '뜨거운 감자';
       case Role.troubleshooter:
         return '문제해결사';
       case Role.tinkerer:
@@ -380,8 +377,6 @@ extension RoleExtension on Role {
         return '파란팀. 대통령이 죽음 상태가 되어도 치료하여 살릴 수 있음.';
       case Role.engineer:
         return '파란팀. 폭탄범과 카드 공유 시 폭탄을 해체하여 파란팀이 승리하게 만들 수 있음.';
-      case Role.hotPotato:
-        return '빨간팀. 게임 종료 시 대통령과 같은 방에 있으면 폭발하여 모두 죽음.';
       case Role.troubleshooter:
         return '파란팀. 카드 공유한 플레이어의 모든 상태이상(수줍음, 저주, 경솔함, 죽음 등)을 해제할 수 있음.';
       case Role.tinkerer:
@@ -531,8 +526,6 @@ extension RoleExtension on Role {
       case Role.engineer:
       case Role.troubleshooter:
         return Team.blue;
-      case Role.hotPotato:
-        return Team.red; // 기본적으로 폭탄범과 같은 팀
       case Role.gambler:
       case Role.mi6:
       case Role.clone:

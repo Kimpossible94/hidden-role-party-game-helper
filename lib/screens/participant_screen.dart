@@ -815,8 +815,6 @@ class _ParticipantScreenState extends State<ParticipantScreen> {
         return Icons.local_hospital;
       case Role.engineer:
         return Icons.build;
-      case Role.hotPotato:
-        return Icons.whatshot;
       case Role.troubleshooter:
         return Icons.build_circle;
       case Role.tinkerer:
