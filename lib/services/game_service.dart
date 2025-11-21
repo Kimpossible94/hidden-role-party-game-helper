@@ -216,17 +216,17 @@ class GameService {
         Role.mastermind,
         Role.drBoom,
         Role.tuesdayKnight,
-        Role.doctor, // 확장 모드에서도 doctor 포함
       ]);
 
       // 확장 파란팀 캐릭터들
       blueRoles.addAll([
+        Role.doctor,
         Role.troubleshooter,
         Role.nurse,
         Role.presidentsDaughter,
         Role.bombBot,
         Role.queen,
-        Role.engineer, // 확장 모드에서도 engineer 포함
+        Role.engineer,
       ]);
 
       // 특수 양팀 가능 캐릭터들 (랜덤 배정)
@@ -255,12 +255,12 @@ class GameService {
     } else {
       // 기본 캐릭터만 사용
       redRoles.addAll([
-        Role.doctor,
         Role.tinkerer,
         Role.mastermind,
       ]);
 
       blueRoles.addAll([
+        Role.doctor,
         Role.engineer,
         Role.troubleshooter,
       ]);

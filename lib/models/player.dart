@@ -251,7 +251,7 @@ extension RoleExtension on Role {
       case Role.agent:
         return '요원';
       case Role.ahab:
-        return '아합 선장';
+        return '에이햅 선장';
       case Role.ambassador:
         return '대사';
       case Role.angel:
@@ -259,9 +259,9 @@ extension RoleExtension on Role {
       case Role.blind:
         return '시각장애인';
       case Role.bombBot:
-        return '폭탄로봇';
+        return '폭탄봇';
       case Role.bouncer:
-        return '경비원';
+        return '바운서';
       case Role.butler:
         return '집사';
       case Role.clown:
@@ -269,7 +269,7 @@ extension RoleExtension on Role {
       case Role.conman:
         return '사기꾼';
       case Role.coyBoy:
-        return '수줍은 남자';
+        return '수줍은 소년';
       case Role.criminal:
         return '범죄자';
       case Role.cupid:
@@ -281,9 +281,9 @@ extension RoleExtension on Role {
       case Role.demon:
         return '악마';
       case Role.drBoom:
-        return '붐 박사';
+        return '닥터 붐';
       case Role.drunk:
-        return '술취한 사람';
+        return '술고래';
       case Role.enforcer:
         return '집행관';
       case Role.eris:
@@ -297,7 +297,7 @@ extension RoleExtension on Role {
       case Role.leprechaun:
         return '레프러콘';
       case Role.maid:
-        return '메이드';
+        return '하녀';
       case Role.martyr:
         return '순교자';
       case Role.mayor:
@@ -305,27 +305,27 @@ extension RoleExtension on Role {
       case Role.medic:
         return '의무병';
       case Role.mime:
-        return '마임';
+        return '무언극배우';
       case Role.minion:
         return '부하';
       case Role.mistress:
-        return '애인';
+        return '정부';
       case Role.moby:
-        return '모비딕';
+        return '모비';
       case Role.mummy:
         return '미라';
       case Role.negotiator:
         return '협상가';
       case Role.nuclearTyrant:
-        return '핵독재자';
+        return '핵폭군';
       case Role.nurse:
         return '간호사';
       case Role.paparazzo:
         return '파파라치';
       case Role.paranoid:
-        return '편집증';
+        return '편집증 환자';
       case Role.presidentsDaughter:
-        return '대통령 딸';
+        return '대통령의 딸';
       case Role.privateEye:
         return '사립탐정';
       case Role.psychologist:
@@ -333,13 +333,13 @@ extension RoleExtension on Role {
       case Role.queen:
         return '여왕';
       case Role.rival:
-        return '라이벌';
+        return '경쟁자';
       case Role.romeo:
         return '로미오';
       case Role.security:
-        return '보안요원';
+        return '경호원';
       case Role.shyGuy:
-        return '수줍은 남자';
+        return '수줍은이';
       case Role.sniper:
         return '저격수';
       case Role.spy:
@@ -347,9 +347,9 @@ extension RoleExtension on Role {
       case Role.survivor:
         return '생존자';
       case Role.target:
-        return '타겟';
+        return '표적';
       case Role.thug:
-        return '깡패';
+        return '건달';
       case Role.tuesdayKnight:
         return '화요기사';
       case Role.usurper:
@@ -366,150 +366,150 @@ extension RoleExtension on Role {
   String get description {
     switch (this) {
       case Role.bomber:
-        return '빨간팀 리더. 게임 종료 시 대통령과 같은 방에 있으면 빨간팀 승리.';
+        return '게임 종료 시 대통령과 같은 방에 있으면 우리 팀 전원 승리. 게임 종료 전에 죽음 상태가 되면 같은 방 사람들에게 죽음을 부여하지 못함.';
       case Role.president:
-        return '파란팀 리더. 게임 종료 시 폭탄범과 다른 방에 있으면 파란팀 승리.';
+        return '게임 종료 시 폭탄범과 다른 방에 있으면 우리 팀 전원 승리. 죽음 상태가 되면 우리 팀 패배.';
       case Role.redTeamMember:
-        return '빨간팀 일반 멤버. 폭탄범이 승리하면 함께 승리.';
+        return '일반 멤버. 폭탄범이 승리하면 함께 승리.';
       case Role.blueTeamMember:
-        return '파란팀 일반 멤버. 대통령이 승리하면 함께 승리.';
+        return '일반 멤버. 대통령이 승리하면 함께 승리.';
       case Role.doctor:
-        return '파란팀. 대통령이 죽음 상태가 되어도 치료하여 살릴 수 있음.';
+        return '의사가 있을 때 추가 승리 조건: 대통령이 게임 종료 전 의사와 카드 공유를 해야 함. 공유하지 않으면 우리 팀 패배.';
       case Role.engineer:
-        return '파란팀. 폭탄범과 카드 공유 시 폭탄을 해체하여 파란팀이 승리하게 만들 수 있음.';
+        return '엔지니어가 있을 때 상대 팀 추가 승리 조건: 폭탄범이 게임 종료 전 엔지니어와 카드 공유를 해야 함. 공유하지 않으면 상대 팀 패배.';
       case Role.troubleshooter:
-        return '파란팀. 카드 공유한 플레이어의 모든 상태이상(수줍음, 저주, 경솔함, 죽음 등)을 해제할 수 있음.';
+        return '의무병과 동일한 능력 - 자신과 카드 공유한 플레이어의 모든 상태이상을 제거함. 제거 가능: 수줍음, 저주, 경솔함, 죽음, 좀비 등.';
       case Role.tinkerer:
-        return '빨간팀. 폭탄범이 엔지니어에게 해체당해도 다시 수리할 수 있음.';
+        return '엔지니어의 백업 캐릭터. 엔지니어 카드가 게임에서 제외되면 엔지니어의 모든 역할을 대신 수행함.';
       case Role.mastermind:
-        return '빨간팀. 다른 빨간팀원의 행동을 지시하고 조종할 수 있음.';
+        return '게임 종료 시 자신이 속한 방의 리더이면서 동시에 게임 중 반대편 방의 리더였던 적이 있어야 승리.';
       case Role.gambler:
-        return '중립. 게임 시작 시 어느 팀이 이길지 예측. 맞추면 승리, 틀리면 패배.';
+        return '마지막 라운드 종료 시 모든 플레이어가 카드를 공개하기 전에 어느 팀(빨간팀, 파란팀, 또는 둘 다 아님)이 이겼는지 공개적으로 예측해야 함. 맞추면 승리.';
       case Role.mi6:
-        return '중립. 게임 중 폭탄범과 대통령 둘 다와 카드를 공유하면 승리.';
+        return '게임 중 폭탄범과 대통령 둘 다와 카드를 공유하면 승리.';
       case Role.clone:
-        return '중립. 첫 번째로 카드를 공유한 플레이어의 팀이 승리하면 함께 승리.';
+        return '첫 번째로 카드/색상 공유한 플레이어가 승리하면 함께 승리. 게임 끝까지 공유하지 않으면 패배. (주의: 로봇과 서로 첫 공유 시 둘 다 패배)';
       case Role.robot:
-        return '중립. 첫 번째로 카드를 공유한 플레이어의 팀이 패배하면 승리.';
+        return '첫 번째로 카드/색상 공유한 플레이어가 승리 목표를 달성하지 못하면 승리. 게임 끝까지 공유하지 않으면 패배. (주의: 복제인간과 서로 첫 공유 시 둘 다 패배)';
       case Role.agoraphobe:
-        return '중립. 게임 시작 시 배정받은 방에서 단 한 번도 나가지 않으면 승리.';
+        return '게임 시작 시 배정받은 방에서 단 한 번도 나가지 않으면 승리.';
       case Role.traveler:
-        return '중립. 과반수 이상의 라운드에서 인질로 다른 방에 보내지면 승리.';
+        return '과반수 이상의 라운드에서 인질로 다른 방에 보내지면 승리.';
       case Role.anarchist:
-        return '중립. 과반수 이상의 라운드에서 리더 탄핵을 성공시키면 승리.';
+        return '과반수 이상의 라운드에서 리더 탄핵을 성공시키면 승리.';
       // 추가 캐릭터들
       case Role.agent:
-        return '능력: 라운드당 한 번, 사적으로 카드를 공개하여 상대방과 강제로 카드 공유 가능.';
+        return '요원 능력(라운드당 1회) - 한 플레이어에게 카드를 사적으로 공개하고 "당신은 나와 카드를 공유해야 합니다"라고 말하여 강제로 카드 공유 가능. 수줍은이, 수줍은 소년 등에게도 작동.';
       case Role.ahab:
-        return '빨간팀. 게임 종료 시 모비딕이 폭탄범과 같은 방에 있고 자신은 다른 방에 있으면 승리.';
+        return '게임 종료 시 모비가 폭탄범과 같은 방에 있고, 자신은 다른 방에 있으면 승리. (모비 사냥꾼)';
       case Role.ambassador:
-        return '중립. 완전 면역 상태로 두 방을 자유롭게 이동 가능. 투표, 능력, 상태이상 모두 무시됨. 배정된 팀의 승리 조건을 따름.';
+        return '게임 시작 시 "나는 대사입니다!" 공개 선언. 면역 상태 (모든 능력/상태이상에 면역). 두 방을 자유롭게 이동 가능. 투표/인질/리더 불가. 플레이어 수에 포함되지 않음. 팀 소속에 따라 승리.';
       case Role.angel:
-        return '행동 제약: 게임 중 항상 진실만 말해야 함. 거짓말 시 패배.';
+        return '행동 제약: 정직 상태로 시작. 언어로 표현하는 모든 것은 진실이어야 함. 비언어적 표현(제스처, 표정 등)으로는 거짓 전달 가능.';
       case Role.blind:
-        return '행동 제약: 게임 중 눈을 감고 있어야 함. 눈을 뜨면 패배.';
+        return '행동 제약: 실명 상태로 시작. 게임 중 최선을 다해 눈을 뜨지 말아야 함. 짧은 게임이니 괜찮습니다!';
       case Role.bombBot:
-        return '파란팀. 게임 종료 시 폭탄범과 같은 방에 있지만 대통령은 없으면 승리.';
+        return '게임 종료 시 폭탄범과 같은 방에 있지만 대통령은 없으면 승리. (폭발용으로 설계된 로봇)';
       case Role.bouncer:
-        return '능력: 자신이 속한 방(플레이어가 더 많은 방)에서 다른 플레이어 한 명을 강제로 내보낼 수 있음.';
+        return '바운서 능력 - 자신이 속한 방의 플레이어 수가 반대편 방보다 많을 때, 한 플레이어에게 카드를 사적으로 공개하고 "나가!"라고 말하여 즉시 방을 바꾸게 할 수 있음. 마지막 라운드와 라운드 사이 휴식시간에는 사용 불가.';
       case Role.butler:
-        return '파란팀. 게임 종료 시 메이드와 대통령 모두와 같은 방에 있으면 승리.';
+        return '게임 종료 시 하녀와 대통령이 모두 같은 방에 있으면 승리.';
       case Role.clown:
-        return '행동 제약: 게임 중 항상 미소를 지어야 함. 미소를 짓지 않으면 패배.';
+        return '행동 제약: 게임 중 최선을 다해 항상 미소를 지어야 함. (연구에 따르면 미소를 지으면 동시에 행복해진다고 합니다!)';
       case Role.conman:
-        return '능력: 다른 플레이어의 색상 공유 요청을 완전한 카드 공유로 바꿀 수 있음.';
+        return '사기꾼 능력 - 플레이어가 색상 공유를 동의하면, 대신 사적 카드 공개를 하게 만듦. 상대방도 반드시 사적 카드 공개를 해야 함.';
       case Role.coyBoy:
-        return '제약: 색상 공유만 가능. 완전한 카드 공유 불가.';
+        return '수줍음 심리 상태로 시작. 색상 공유만 가능 (카드 공유 불가). 캐릭터 능력에 의한 강제 카드 공유는 가능. 심리학자가 치료 가능.';
       case Role.criminal:
-        return '능력: 카드 공유한 플레이어에게 수줍음 상태이상 부여. 수줍음: 카드를 아무에게도 보여줄 수 없음.';
+        return '범죄자 능력 - 자신과 카드 공유한 플레이어에게 수줍음 상태이상을 부여함. (수줍음: 카드를 누구에게도 공개할 수 없음)';
       case Role.cupid:
-        return '능력: 두 플레이어를 사랑 관계로 만들어 게임 종료 시 같은 방에 있게 만듦.';
+        return '큐피드 능력(게임당 1회): 2명의 플레이어에게 카드를 사적으로 공개하여 사랑 상태 부여. 사랑 상태 플레이어는 원래 승리 조건을 잃고, 게임 종료 시 서로 같은 방에 있어야만 승리.';
       case Role.dealer:
-        return '능력: 카드 공유한 플레이어에게 경솔함 상태이상 부여. 경솔함: 아무에게나 자동으로 카드를 보여주게 됨.';
+        return '딜러 능력 - 자신과 카드 공유한 플레이어에게 경솔함 상태이상을 부여함. (경솔함: 카드/색상 공유 제안을 절대 거절할 수 없음)';
       case Role.decoy:
-        return '중립. 저격수가 게임 종료 시 자신을 지목하면 승리.';
+        return '마지막 라운드에서 저격수가 자신을 사격하면 승리. (미끼로 승리하면 정말 기분 좋습니다!)';
       case Role.demon:
-        return '행동 제약: 게임 중 항상 거짓말만 해야 함. 진실을 말하면 패배.';
+        return '행동 제약: 거짓말쟁이 상태로 시작. 언어로 표현하는 모든 것은 거짓이어야 함. 비언어적 표현(제스처, 표정 등)으로는 진실 전달 가능. (바지에 불이 붙을 수 있으니 조심하세요!)';
       case Role.drBoom:
-        return '빨간팀. 대통령과 카드 공유 시 같은 방의 모든 사람에게 죽음 상태이상 부여. 죽음: 게임에서 패배하며 승리 불가 (의사가 치료 가능).';
+        return '폭발 능력: 대통령과 카드 공유 시 같은 방의 모든 사람이 즉시 죽음 상태가 되며 게임이 즉시 종료됨. (주의: 대통령의 딸에게는 작동하지 않음)';
       case Role.drunk:
-        return '중립. 특수: 마지막 라운드 시작 시 무작위 다른 캐릭터 카드와 교체됨. 교체된 역할의 승리 조건을 따름.';
+        return '게임 시작 전 랜덤 캐릭터 카드 1장이 정신차림 카드로 제외됨. 마지막 라운드 시작 시 자신의 술고래 카드를 정신차림 카드와 교환하고 그 역할을 수행해야 함. 교환하지 못하면 패배.';
       case Role.enforcer:
-        return '능력: 두 플레이어를 지정하여 서로 카드를 공유하도록 강제할 수 있음.';
+        return '집행관 능력(라운드당 1회) - 2명의 플레이어에게 카드를 사적으로 공개하고 "당신들은 서로 카드를 공개해야 합니다"라고 말하여 강제로 카드 공유시킴. 수줍은이에게도 작동.';
       case Role.eris:
-        return '능력: 두 플레이어를 증오 관계로 만들어 게임 종료 시 서로 다른 방에 있게 만듦.';
+        return '에리스 능력(게임당 1회): 2명의 플레이어에게 카드를 사적으로 공개하여 증오 상태 부여. 증오 상태 플레이어는 원래 승리 조건을 잃고, 게임 종료 시 서로 다른 방에 있어야만 승리.';
       case Role.invincible:
-        return '특수: 모든 능력과 상태이상에 완전 면역. 어떤 효과도 받지 않음.';
+        return '모든 능력과 상태이상에 완전 면역. 어떤 효과도 받지 않음.';
       case Role.intern:
-        return '파란팀. 게임 종료 시 대통령과 같은 방에 있으면 승리.';
+        return '게임 종료 시 대통령과 같은 방에 있으면 승리.';
       case Role.juliet:
-        return '빨간팀. 게임 종료 시 로미오와 폭탄범 모두와 같은 방에 있으면 승리.';
+        return '게임 종료 시 로미오와 폭탄범이 모두 같은 방에 있으면 승리.';
       case Role.leprechaun:
-        return '중립. 경솔함 상태이상 보유. 카드 공유한 플레이어와 카드를 교체하며 승리.';
+        return '경솔함 상태로 시작 (카드/색상 공유 거절 불가). 레프러콘 능력: 카드 또는 색상 공유한 플레이어와 즉시 카드를 교환함. 게임 종료 시 레프러콘 역할이면 승리.';
       case Role.maid:
-        return '파란팀. 게임 종료 시 집사와 대통령 모두와 같은 방에 있으면 승리.';
+        return '게임 종료 시 집사와 대통령이 모두 같은 방에 있으면 승리.';
       case Role.martyr:
-        return '빨간팀. 폭탄범의 백업 역할. 폭탄범이 죽음 상태가 되면 대신함.';
+        return '폭탄범의 백업 캐릭터. 폭탄범 카드가 게임에서 제외되면 폭탄범의 모든 역할을 수행함 (대통령과 같은 방 위치, 엔지니어와 카드 공유 등).';
       case Role.mayor:
-        return '능력: 자신이 속한 방에 짝수 명의 플레이어가 있을 때 탄핵 투표에서 2표를 행사.';
+        return '자신이 속한 방에 짝수 명의 플레이어가 있을 때, 리더 탄핵 투표 시 카드를 공개 공개하여 2표 행사 가능. 반대편 시장도 공개하면 효과 무효.';
       case Role.medic:
-        return '능력: 카드 공유한 플레이어의 모든 상태이상 제거. 제거 가능: 수줍음, 저주, 경솔함, 죽음, 좀비 등.';
+        return '의무병 능력 - 자신과 카드 공유한 플레이어의 모든 상태이상을 제거함. 제거 가능: 수줍음, 저주, 경솔함, 죽음, 좀비 등. (자신은 면역 없으며, 반대편 의무병만 자신의 상태이상 제거 가능)';
       case Role.mime:
-        return '행동 제약: 게임 중 어떤 소음도 내지 않아야 함. 소음 발생 시 패배.';
+        return '행동 제약: 게임 중 최선을 다해 어떤 소음도 내지 말아야 함. (무언극을 사랑하는 사람에게 최고. 무언극을 싫어하는 사람은 이 캐릭터를 싫어할 것입니다.)';
       case Role.minion:
-        return '중립. 자신이 속한 방에서 리더가 탄핵당하지 않으면 승리.';
+        return '자신이 속한 방에서 리더가 단 한 번도 탄핵당하지 않으면 승리.';
       case Role.mistress:
-        return '파란팀. 게임 종료 시 대통령과 같은 방에 있고 아내는 없으면 승리.';
+        return '게임 종료 시 대통령과 같은 방에 있고, 아내는 없으면 승리. (제3자의 힘을 느껴보세요!)';
       case Role.moby:
-        return '빨간팀. 게임 종료 시 아합이 폭탄범과 같은 방에 있고 자신은 다른 방에 있으면 승리.';
+        return '게임 종료 시 에이햅이 폭탄범과 같은 방에 있고, 자신은 다른 방에 있으면 승리. (고래를 위하여!)';
       case Role.mummy:
-        return '능력: 카드 공유한 플레이어에게 저주 상태이상 부여. 저주: 소음을 낼 수 없음 (대화, 소리 금지).';
+        return '미라 능력 - 자신과 카드 공유한 플레이어에게 저주 상태이상을 부여함. (저주: 어떤 소음도 낼 수 없음. 언어 능력이 필요한 모든 능력 사용 불가)';
       case Role.negotiator:
-        return '제약: 카드 완전 공유만 가능. 색상 공유 불가.';
+        return '노련함 상태로 시작. 카드 공유만 가능 (색상 공유, 공개 공개, 사적 공개 모두 불가). 수줍음 상태 획득 시 아무것도 할 수 없게 됨.';
       case Role.nuclearTyrant:
-        return '중립. 대통령과 폭탄범 둘 다 자신과 카드 공유하지 않으면 단독 승리. 다른 모든 플레이어는 패배.';
+        return '경솔함 상태로 시작 (카드 공유 거절 불가). 게임 종료 시 대통령과 폭탄범이 자신과 카드 공유하지 않았으면 단독 승리 (다른 모든 플레이어 패배). 둘 중 하나라도 공유했으면 패배.';
       case Role.nurse:
-        return '파란팀. 의사의 백업 역할. 의사가 죽음 상태가 되면 대신함.';
+        return '의사의 백업 캐릭터. 의사 카드가 게임에서 제외되면 의사의 역할을 수행함 (대통령과 카드 공유 필수).';
       case Role.paparazzo:
-        return '행동 제약: 사적 대화를 방해하고 시끄럽게 행동해야 함.';
+        return '행동 제약: 사적인 대화가 없도록 최선을 다해 방해하고 침범해야 함. 사생활 보호 약속 규칙 사용 시 카드를 공개 공개하여 규칙 무시 가능. (귀찮은 존재가 되세요!)';
       case Role.paranoid:
-        return '제약: 게임 중 카드 공유를 단 한 번만 할 수 있음.';
+        return '편집증 심리 상태로 시작. 카드 공유만 가능하며, 게임 중 단 한 번만 카드 공유 가능. 능력에 의한 강제 공유는 횟수에 포함되지 않음. 심리학자가 치료 가능.';
       case Role.presidentsDaughter:
-        return '파란팀. 대통령의 백업 역할. 대통령이 죽음 상태가 되면 대신함.';
+        return '대통령의 백업 캐릭터. 대통령 카드가 게임에서 제외되면 대통령의 모든 역할을 수행함. (부통령이 아닙니다. 조용히 웃으세요.)';
       case Role.privateEye:
-        return '중립. 게임 종료 시 게임에 사용되지 않고 남겨진 역할 카드(묻힌 카드)의 정체를 맞추면 승리.';
+        return '마지막 라운드 종료 시 모든 플레이어가 카드를 공개하기 전에 게임에 사용되지 않고 남겨진 역할 카드의 정체를 공개적으로 발표해야 함. 맞추면 승리.';
       case Role.psychologist:
-        return '능력: 심리적 상태이상(수줍음, 경솔함, 저주 등)을 가진 플레이어를 치료 가능.';
+        return '심리 상태이상(수줍음, 편집증 등)을 가진 캐릭터에게 카드를 사적으로 공개하면, 그 캐릭터가 원할 경우 카드 공유 가능. 공유하면 그 플레이어의 심리 상태이상이 제거됨.';
       case Role.queen:
-        return '파란팀. 게임 종료 시 대통령과 폭탄범 모두와 다른 방에 있으면 승리.';
+        return '게임 종료 시 대통령과 폭탄범 모두와 다른 방에 있으면 승리. (통치용으로 설계되었습니다.)';
       case Role.rival:
-        return '파란팀. 게임 종료 시 대통령과 다른 방에 있으면 승리.';
+        return '게임 종료 시 대통령과 다른 방에 있으면 승리.';
       case Role.romeo:
-        return '빨간팀. 게임 종료 시 줄리엣과 폭탄범 모두와 같은 방에 있으면 승리.';
+        return '게임 종료 시 줄리엣과 폭탄범이 모두 같은 방에 있으면 승리.';
       case Role.security:
-        return '능력: 한 명을 선택하여 이번 라운드에 인질로 보내지지 않도록 보호.';
+        return '태클 능력(게임당 1회) - 카드를 공개적으로 공개하고 한 플레이어를 지목하여 "너는 어디에도 못 간다"라고 말함. 그 플레이어는 이번 라운드에 인질로 선택될 수 없음. 카드는 영구적으로 공개 상태로 남음.';
       case Role.shyGuy:
-        return '제약: 수줍음 상태이상 보유. 카드를 누구에게도 공개할 수 없음. (수줍음: 카드를 아무에게도 보여줄 수 없음)';
+        return '수줍음 심리 상태로 시작. 카드의 어떤 부분도 누구에게도 공개할 수 없음. 심리학자가 치료 가능.';
       case Role.sniper:
-        return '중립. 게임 종료 시 타겟 역할을 가진 플레이어를 지목해서 맞추면 승리.';
+        return '마지막 라운드 종료 시 모든 플레이어가 카드를 공개하기 전에 한 명을 공개적으로 지목하여 사격해야 함. 지목한 플레이어가 표적 역할이면 승리.';
       case Role.spy:
-        return '특수: 반대 팀 색상의 카드를 가진 스파이. 실제 팀과 카드 색이 다름.';
+        return '반대 팀 색상의 카드를 가진 스파이. 실제 팀과 카드 색이 다름.';
       case Role.survivor:
-        return '파란팀. 게임 종료 시 폭탄범과 다른 방에 있으면 승리.';
+        return '게임 종료 시 폭탄범과 다른 방에 있으면 승리.';
       case Role.target:
-        return '중립. 게임 종료 시 저격수가 자신을 지목하지 않으면 승리.';
+        return '마지막 라운드 종료 시 저격수가 자신을 사격하지 않으면 승리.';
       case Role.thug:
-        return '능력: 카드 공유한 플레이어에게 수줍음 상태이상 부여. (수줍음: 카드를 아무에게도 보여줄 수 없음)';
+        return '건달 능력 - 자신과 카드 공유한 플레이어에게 수줍음 상태이상을 부여함. (수줍음: 색상 공유만 가능, 완전한 카드 공유 불가)';
       case Role.tuesdayKnight:
-        return '빨간팀. 폭탄범과 카드 공유 시 대통령 제외 같은 방 모든 사람에게 죽음 상태이상 부여.';
+        return '포옹 능력: 폭탄범과 카드 공유 시 대통령을 제외한 같은 방 모든 사람이 즉시 죽음 상태가 되며 게임이 즉시 종료됨. (주의: 순교자에게는 작동하지 않음)';
       case Role.usurper:
-        return '능력: 카드를 공개하여 즉시 자신이 속한 방의 리더가 됨.';
+        return '찬탈자 능력(게임당 1회, 마지막 라운드 제외) - 카드를 공개적으로 공개하여 즉시 자신이 속한 방의 리더가 됨. 능력 사용한 라운드에는 탄핵당하지 않음. 카드는 영구적으로 공개 상태로 남음.';
       case Role.victim:
-        return '빨간팀. 게임 종료 시 폭탄범과 같은 방에 있으면 승리.';
+        return '게임 종료 시 폭탄범과 같은 방에 있으면 승리.';
       case Role.wife:
-        return '파란팀. 게임 종료 시 대통령과 같은 방에 있고 애인은 없으면 승리.';
+        return '게임 종료 시 대통령과 같은 방에 있고, 정부는 없으면 승리. (서약을 지키세요!)';
       case Role.zombie:
-        return '중립. 카드 공유 시 상대방을 좀비로 감염시킬 수 있음. 게임 종료 시 과반수 이상의 플레이어가 좀비면 좀비들만 승리. (감염된 사람도 원래 팀을 잃고 좀비가 됨)';
+        return '좀비 상태로 시작. 카드/색상 공유 시 상대를 좀비로 감염. 좀비 팀 승리 조건: 게임 종료 시 죽음 상태가 아닌 모든 플레이어가 좀비 팀이어야 함. 감염된 플레이어는 "이제 당신도 좀비입니다"라고 알려야 함.';
     }
   }
 
